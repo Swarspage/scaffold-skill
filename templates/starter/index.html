@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#08090c" />
+    <meta name="description" content="A scroll-driven procedural 3D watch experience." />
+    <title>Precision / A 3D product story</title>
+  </head>
+  <body>
+    <main>
+      <section class="scroll-track" id="scroll-track" data-scroll-3d-track aria-label="Watch product story">
+        <div class="stage">
+          <canvas id="scene" data-scroll-3d-canvas aria-hidden="true"></canvas>
+          <div class="atmosphere" aria-hidden="true"></div>
+          <header class="topbar"><span>STUDIO / 001</span><span>MECHANICAL OBJECT STUDY</span></header>
+          <div class="hero-copy">
+            <p class="eyebrow">A STUDY IN PRECISION</p>
+            <h1>TIME,<br /><em>TAKEN APART.</em></h1>
+            <p class="subcopy">Nine components. One mechanical story.<br />Scroll to inspect the construction.</p>
+          </div>
+          <div class="part-label" id="part-label" aria-live="polite">
+            <span class="part-index">01 / 09</span>
+            <span class="part-name">MACHINED CASE</span>
+          </div>
+          <div class="scroll-cue"><span></span> SCROLL TO DISASSEMBLE</div>
+          <div class="progress-track"><div id="progress-fill"></div></div>
+          <div class="fallback" id="fallback" hidden>
+            <div class="fallback-watch" aria-hidden="true"><span></span></div>
+            <p>STATIC PRODUCT VIEW</p>
+            <h2>Precision, without motion.</h2>
+            <p>Your browser or device is showing the accessible static version.</p>
+          </div>
+          <div class="status" id="status" aria-live="polite"></div>
+        </div>
+      </section>
+      <section class="closing">
+        <p class="eyebrow">THE LAST DETAIL</p>
+        <h2>Built to be understood.<br /><em>Made to be remembered.</em></h2>
+        <p>The canvas tells the visual story. This section remains ordinary semantic HTML, available without WebGL or motion.</p>
+        <a href="#scroll-track">REPLAY THE OBJECT <span>↗</span></a>
+      </section>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

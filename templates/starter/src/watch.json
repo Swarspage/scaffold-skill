@@ -1,0 +1,475 @@
+{
+  "version": "1.0",
+  "source": {
+    "type": "procedural"
+  },
+  "scene": {
+    "background": "#08090c",
+    "fog": {
+      "color": "#08090c",
+      "near": 12,
+      "far": 34
+    },
+    "camera": {
+      "fov": 42,
+      "near": 0.1,
+      "far": 120,
+      "position": [
+        0,
+        2,
+        8
+      ],
+      "target": [
+        0,
+        0,
+        0
+      ]
+    },
+    "lighting": {
+      "ambient": 0.48,
+      "keyColor": "#f4dfc5",
+      "keyIntensity": 2.0,
+      "keyPosition": [
+        -4,
+        5,
+        6
+      ],
+      "rimColor": "#df783d",
+      "rimIntensity": 2.4,
+      "rimPosition": [
+        4,
+        2,
+        -3
+      ]
+    },
+    "transparent": true
+  },
+  "quality": {
+    "maxDpr": 1.8,
+    "damping": 8.0
+  },
+  "title": "Precision / Mechanical Watch",
+  "parts": [
+    {
+      "id": "strap-upper",
+      "label": "Upper strap",
+      "order": 0,
+      "geometry": {
+        "type": "box",
+        "size": [
+          0.48,
+          1.15,
+          0.18
+        ]
+      },
+      "material": {
+        "color": "#282a2e",
+        "roughness": 0.72
+      },
+      "rest": [
+        0,
+        -1.12,
+        -0.12
+      ],
+      "intro": [
+        -1.8,
+        -2.0,
+        -0.5
+      ],
+      "exploded": [
+        -0.85,
+        -1.9,
+        -0.8
+      ]
+    },
+    {
+      "id": "strap-lower",
+      "label": "Lower strap",
+      "order": 1,
+      "geometry": {
+        "type": "box",
+        "size": [
+          0.48,
+          1.15,
+          0.18
+        ]
+      },
+      "material": {
+        "color": "#282a2e",
+        "roughness": 0.72
+      },
+      "rest": [
+        0,
+        1.12,
+        -0.12
+      ],
+      "intro": [
+        1.9,
+        2.0,
+        -0.4
+      ],
+      "exploded": [
+        0.9,
+        1.9,
+        -0.8
+      ]
+    },
+    {
+      "id": "case",
+      "label": "Machined case",
+      "order": 2,
+      "geometry": {
+        "type": "cylinder",
+        "radiusTop": 1.0,
+        "radiusBottom": 1.0,
+        "height": 0.28,
+        "segments": 64
+      },
+      "rotation": [
+        1.5708,
+        0,
+        0
+      ],
+      "material": {
+        "color": "#858a90",
+        "metalness": 0.9,
+        "roughness": 0.24
+      },
+      "rest": [
+        0,
+        0,
+        0
+      ],
+      "intro": [
+        0,
+        0,
+        1.8
+      ],
+      "exploded": [
+        0,
+        0,
+        0.65
+      ]
+    },
+    {
+      "id": "movement",
+      "label": "Movement housing",
+      "order": 3,
+      "geometry": {
+        "type": "cylinder",
+        "radiusTop": 0.7,
+        "radiusBottom": 0.7,
+        "height": 0.12,
+        "segments": 48
+      },
+      "rotation": [
+        1.5708,
+        0,
+        0
+      ],
+      "material": {
+        "color": "#9d6c39",
+        "metalness": 0.82,
+        "roughness": 0.28
+      },
+      "rest": [
+        0,
+        0,
+        -0.03
+      ],
+      "intro": [
+        0,
+        0,
+        -1.8
+      ],
+      "exploded": [
+        0,
+        0,
+        -0.75
+      ]
+    },
+    {
+      "id": "dial",
+      "label": "Enamel dial",
+      "order": 4,
+      "geometry": {
+        "type": "cylinder",
+        "radiusTop": 0.77,
+        "radiusBottom": 0.77,
+        "height": 0.045,
+        "segments": 64
+      },
+      "rotation": [
+        1.5708,
+        0,
+        0
+      ],
+      "material": {
+        "color": "#e5dfd2",
+        "metalness": 0.12,
+        "roughness": 0.32
+      },
+      "rest": [
+        0,
+        0,
+        0.17
+      ],
+      "intro": [
+        -1.8,
+        0,
+        1.7
+      ],
+      "exploded": [
+        0,
+        0,
+        0.92
+      ]
+    },
+    {
+      "id": "bezel",
+      "label": "Polished bezel",
+      "order": 5,
+      "geometry": {
+        "type": "torus",
+        "radius": 0.84,
+        "tube": 0.075,
+        "segments": 64
+      },
+      "rotation": [
+        1.5708,
+        0,
+        0
+      ],
+      "material": {
+        "color": "#c6a16c",
+        "metalness": 0.94,
+        "roughness": 0.16
+      },
+      "rest": [
+        0,
+        0,
+        0.27
+      ],
+      "intro": [
+        1.8,
+        0,
+        1.8
+      ],
+      "exploded": [
+        0,
+        0,
+        1.25
+      ]
+    },
+    {
+      "id": "hour-hand",
+      "label": "Hour hand",
+      "order": 6,
+      "geometry": {
+        "type": "box",
+        "size": [
+          0.075,
+          0.42,
+          0.035
+        ]
+      },
+      "material": {
+        "color": "#26272a",
+        "metalness": 0.8,
+        "roughness": 0.22
+      },
+      "rest": [
+        0,
+        0.1,
+        0.235
+      ],
+      "rotation": [
+        0,
+        0,
+        -0.55
+      ],
+      "intro": [
+        -2.3,
+        1.7,
+        0.3
+      ],
+      "exploded": [
+        -0.3,
+        0.85,
+        1.45
+      ]
+    },
+    {
+      "id": "minute-hand",
+      "label": "Minute hand",
+      "order": 7,
+      "geometry": {
+        "type": "box",
+        "size": [
+          0.045,
+          0.58,
+          0.025
+        ]
+      },
+      "material": {
+        "color": "#26272a",
+        "metalness": 0.8,
+        "roughness": 0.22
+      },
+      "rest": [
+        0,
+        0.16,
+        0.26
+      ],
+      "rotation": [
+        0,
+        0,
+        0.2
+      ],
+      "intro": [
+        2.3,
+        -1.7,
+        0.5
+      ],
+      "exploded": [
+        0.3,
+        -0.9,
+        1.65
+      ]
+    },
+    {
+      "id": "crown",
+      "label": "Winding crown",
+      "order": 8,
+      "geometry": {
+        "type": "cylinder",
+        "radiusTop": 0.16,
+        "radiusBottom": 0.16,
+        "height": 0.3,
+        "segments": 24
+      },
+      "rotation": [
+        1.5708,
+        0,
+        1.5708
+      ],
+      "material": {
+        "color": "#b58a53",
+        "metalness": 0.9,
+        "roughness": 0.22
+      },
+      "rest": [
+        1.07,
+        0,
+        0
+      ],
+      "intro": [
+        2.7,
+        0,
+        0.8
+      ],
+      "exploded": [
+        1.65,
+        0,
+        0.15
+      ]
+    }
+  ],
+  "phases": {
+    "assemble": {
+      "from": 0.0,
+      "to": 0.2,
+      "stagger": 0.04,
+      "window": 0.68,
+      "easing": "backOut"
+    },
+    "explode": {
+      "from": 0.43,
+      "to": 0.68,
+      "stagger": 0.04,
+      "window": 0.68,
+      "easing": "smooth"
+    },
+    "reassemble": {
+      "from": 0.86,
+      "to": 1.0,
+      "stagger": 0.04,
+      "window": 0.68,
+      "reverse": true,
+      "easing": "smooth"
+    }
+  },
+  "camera": {
+    "waypoints": [
+      {
+        "at": 0.0,
+        "position": [
+          0,
+          0.5,
+          6.6
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "at": 0.23,
+        "position": [
+          0,
+          0.4,
+          6.2
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "at": 0.48,
+        "focusPart": "dial",
+        "offset": [
+          0.25,
+          0.2,
+          2.8
+        ],
+        "easing": "smooth"
+      },
+      {
+        "at": 0.66,
+        "focusPart": "movement",
+        "offset": [
+          0.45,
+          0.25,
+          2.7
+        ],
+        "easing": "smooth"
+      },
+      {
+        "at": 0.82,
+        "focusPart": "crown",
+        "offset": [
+          1.0,
+          0.4,
+          2.3
+        ],
+        "easing": "smooth"
+      },
+      {
+        "at": 1.0,
+        "position": [
+          0,
+          0.6,
+          6.6
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  }
+}

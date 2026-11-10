@@ -1,0 +1,306 @@
+{
+  "version": "1.0",
+  "source": {
+    "type": "procedural"
+  },
+  "scene": {
+    "background": "#08090c",
+    "fog": {
+      "color": "#08090c",
+      "near": 12,
+      "far": 34
+    },
+    "camera": {
+      "fov": 42,
+      "near": 0.1,
+      "far": 120,
+      "position": [
+        0,
+        2,
+        8
+      ],
+      "target": [
+        0,
+        0,
+        0
+      ]
+    },
+    "lighting": {
+      "ambient": 0.48,
+      "keyColor": "#f4dfc5",
+      "keyIntensity": 2.0,
+      "keyPosition": [
+        -4,
+        5,
+        6
+      ],
+      "rimColor": "#df783d",
+      "rimIntensity": 2.4,
+      "rimPosition": [
+        4,
+        2,
+        -3
+      ]
+    },
+    "transparent": true
+  },
+  "quality": {
+    "maxDpr": 1.8,
+    "damping": 8.0
+  },
+  "title": "Studio / Compact Loudspeaker",
+  "parts": [
+    {
+      "id": "cabinet",
+      "label": "Acoustic cabinet",
+      "order": 0,
+      "geometry": {
+        "type": "box",
+        "size": [
+          2.1,
+          2.8,
+          1.0
+        ]
+      },
+      "material": {
+        "color": "#24272a",
+        "roughness": 0.52
+      },
+      "rest": [
+        0,
+        0,
+        0
+      ],
+      "intro": [
+        0,
+        0,
+        -2.6
+      ],
+      "exploded": [
+        0,
+        0,
+        -0.2
+      ]
+    },
+    {
+      "id": "woofer",
+      "label": "Low-frequency driver",
+      "order": 1,
+      "geometry": {
+        "type": "cylinder",
+        "radiusTop": 0.74,
+        "radiusBottom": 0.74,
+        "height": 0.16,
+        "segments": 64
+      },
+      "rotation": [
+        1.5708,
+        0,
+        0
+      ],
+      "material": {
+        "color": "#15171a",
+        "metalness": 0.45,
+        "roughness": 0.45
+      },
+      "rest": [
+        0,
+        -0.55,
+        0.58
+      ],
+      "intro": [
+        -2,
+        -1,
+        1.8
+      ],
+      "exploded": [
+        -1.1,
+        -0.55,
+        1.3
+      ]
+    },
+    {
+      "id": "tweeter",
+      "label": "High-frequency tweeter",
+      "order": 2,
+      "geometry": {
+        "type": "sphere",
+        "radius": 0.27,
+        "segments": 32
+      },
+      "material": {
+        "color": "#a7a9ad",
+        "metalness": 0.75,
+        "roughness": 0.22
+      },
+      "rest": [
+        0,
+        0.72,
+        0.62
+      ],
+      "intro": [
+        2,
+        1.8,
+        1.3
+      ],
+      "exploded": [
+        1.05,
+        0.85,
+        1.2
+      ]
+    },
+    {
+      "id": "grille",
+      "label": "Magnetic grille",
+      "order": 3,
+      "geometry": {
+        "type": "box",
+        "size": [
+          2.0,
+          2.7,
+          0.08
+        ]
+      },
+      "material": {
+        "color": "#565b60",
+        "roughness": 0.88
+      },
+      "rest": [
+        0,
+        0,
+        0.57
+      ],
+      "intro": [
+        0,
+        2.5,
+        1.8
+      ],
+      "exploded": [
+        0,
+        0,
+        1.9
+      ]
+    },
+    {
+      "id": "port",
+      "label": "Bass reflex port",
+      "order": 4,
+      "geometry": {
+        "type": "cylinder",
+        "radiusTop": 0.18,
+        "radiusBottom": 0.18,
+        "height": 0.25,
+        "segments": 32
+      },
+      "rotation": [
+        1.5708,
+        0,
+        0
+      ],
+      "material": {
+        "color": "#0c0d0f",
+        "roughness": 0.5
+      },
+      "rest": [
+        0,
+        -1.05,
+        0.58
+      ],
+      "intro": [
+        -2,
+        -2,
+        -0.3
+      ],
+      "exploded": [
+        0,
+        -1.65,
+        1.2
+      ]
+    }
+  ],
+  "phases": {
+    "assemble": {
+      "from": 0,
+      "to": 0.18,
+      "stagger": 0.08,
+      "window": 0.68,
+      "easing": "backOut"
+    },
+    "explode": {
+      "from": 0.45,
+      "to": 0.72,
+      "stagger": 0.08,
+      "window": 0.68,
+      "easing": "smooth"
+    },
+    "reassemble": {
+      "from": 0.88,
+      "to": 1,
+      "stagger": 0.08,
+      "window": 0.68,
+      "reverse": true,
+      "easing": "smooth"
+    }
+  },
+  "camera": {
+    "waypoints": [
+      {
+        "at": 0,
+        "position": [
+          0,
+          0.3,
+          6.8
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "at": 0.42,
+        "position": [
+          0.1,
+          0.25,
+          6.2
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "at": 0.65,
+        "focusPart": "woofer",
+        "offset": [
+          0.5,
+          -0.1,
+          2.6
+        ]
+      },
+      {
+        "at": 0.82,
+        "focusPart": "tweeter",
+        "offset": [
+          0.4,
+          0.2,
+          2.2
+        ]
+      },
+      {
+        "at": 1,
+        "position": [
+          0,
+          0.3,
+          6.8
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  }
+}

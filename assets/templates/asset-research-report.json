@@ -1,0 +1,32 @@
+{
+  "reportVersion": "1.0",
+  "subject": {
+    "name": "UNFILLED \u2014 exact object and version required",
+    "brand": null,
+    "intendedUse": "web experience; state personal, portfolio, or commercial use"
+  },
+  "toolAccess": {
+    "webSearch": "unavailable",
+    "imageSearch": "unavailable",
+    "browserOpen": "unavailable",
+    "notes": "Set each capability to available only after confirming it exists in the host agent."
+  },
+  "queries": [],
+  "visualReferences": [],
+  "modelCandidates": [],
+  "selectedAsset": {
+    "strategy": "blocked-awaiting-asset",
+    "candidateUrl": null,
+    "localPath": null,
+    "license": "unknown",
+    "licenseUrl": null,
+    "attribution": null,
+    "rationale": "UNFILLED \u2014 research the object and select an evidence-backed asset strategy before modelling."
+  },
+  "knownUnknowns": [
+    "UNFILLED \u2014 list unknown dimensions, views, model structure and licensing questions."
+  ],
+  "decisionNotes": [
+    "UNFILLED \u2014 do not use this report as completed research."
+  ]
+}

@@ -1,0 +1,558 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/scroll-3d-scene-1.0.schema.json",
+  "title": "Scroll 3D Experience Spec",
+  "description": "Portable scene contract for scroll-driven object choreography and camera rails.",
+  "type": "object",
+  "required": [
+    "version",
+    "source",
+    "scene",
+    "parts",
+    "phases",
+    "camera"
+  ],
+  "properties": {
+    "version": {
+      "const": "1.0"
+    },
+    "title": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "procedural",
+            "gltf"
+          ]
+        },
+        "url": {
+          "type": "string"
+        },
+        "rootName": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "gltf"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "url"
+            ]
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "scene": {
+      "type": "object",
+      "required": [
+        "background",
+        "camera",
+        "lighting"
+      ],
+      "properties": {
+        "background": {
+          "type": "string"
+        },
+        "fog": {
+          "type": "object",
+          "properties": {
+            "color": {
+              "type": "string"
+            },
+            "near": {
+              "type": "number",
+              "minimum": 0
+            },
+            "far": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "camera": {
+          "type": "object",
+          "required": [
+            "fov",
+            "near",
+            "far",
+            "position",
+            "target"
+          ],
+          "properties": {
+            "fov": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 180
+            },
+            "near": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "far": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "position": {
+              "$ref": "#/$defs/vector3"
+            },
+            "target": {
+              "$ref": "#/$defs/vector3"
+            }
+          },
+          "additionalProperties": false
+        },
+        "lighting": {
+          "type": "object",
+          "properties": {
+            "ambient": {
+              "type": "number",
+              "minimum": 0
+            },
+            "keyColor": {
+              "type": "string"
+            },
+            "keyIntensity": {
+              "type": "number",
+              "minimum": 0
+            },
+            "keyPosition": {
+              "$ref": "#/$defs/vector3"
+            },
+            "rimColor": {
+              "type": "string"
+            },
+            "rimIntensity": {
+              "type": "number",
+              "minimum": 0
+            },
+            "rimPosition": {
+              "$ref": "#/$defs/vector3"
+            }
+          },
+          "additionalProperties": false
+        },
+        "transparent": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "parts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/part"
+      }
+    },
+    "phases": {
+      "type": "object",
+      "required": [
+        "assemble",
+        "explode"
+      ],
+      "properties": {
+        "assemble": {
+          "$ref": "#/$defs/phase"
+        },
+        "explode": {
+          "$ref": "#/$defs/phase"
+        },
+        "reassemble": {
+          "$ref": "#/$defs/phase"
+        }
+      },
+      "additionalProperties": false
+    },
+    "camera": {
+      "type": "object",
+      "required": [
+        "waypoints"
+      ],
+      "properties": {
+        "waypoints": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/$defs/waypoint"
+          }
+        },
+        "mobileWaypoints": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/$defs/waypoint"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "quality": {
+      "type": "object",
+      "properties": {
+        "maxDpr": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 3
+        },
+        "damping": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "vector3": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "phase": {
+      "type": "object",
+      "required": [
+        "from",
+        "to",
+        "stagger",
+        "window"
+      ],
+      "properties": {
+        "from": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "to": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "stagger": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "window": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        },
+        "reverse": {
+          "type": "boolean"
+        },
+        "easing": {
+          "enum": [
+            "smooth",
+            "linear",
+            "backOut"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "part": {
+      "type": "object",
+      "required": [
+        "id",
+        "label",
+        "rest"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "label": {
+          "type": "string"
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "nodeName": {
+          "type": "string"
+        },
+        "rest": {
+          "$ref": "#/$defs/vector3"
+        },
+        "intro": {
+          "$ref": "#/$defs/vector3"
+        },
+        "exploded": {
+          "$ref": "#/$defs/vector3"
+        },
+        "rotation": {
+          "$ref": "#/$defs/vector3"
+        },
+        "introRotation": {
+          "$ref": "#/$defs/vector3"
+        },
+        "restRotation": {
+          "$ref": "#/$defs/vector3"
+        },
+        "explodedRotation": {
+          "$ref": "#/$defs/vector3"
+        },
+        "geometry": {
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "enum": [
+                "box",
+                "sphere",
+                "cylinder",
+                "torus",
+                "cone",
+                "ring",
+                "lathe"
+              ]
+            },
+            "size": {
+              "$ref": "#/$defs/vector3"
+            },
+            "radius": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "radiusTop": {
+              "type": "number",
+              "minimum": 0
+            },
+            "radiusBottom": {
+              "type": "number",
+              "minimum": 0
+            },
+            "height": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "tube": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "segments": {
+              "type": "integer",
+              "minimum": 3
+            },
+            "radiusInner": {
+              "type": "number",
+              "minimum": 0
+            },
+            "radiusOuter": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "points": {
+              "type": "array",
+              "minItems": 3,
+              "items": {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  {
+                    "type": "number"
+                  }
+                ],
+                "minItems": 2,
+                "maxItems": 2
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "material": {
+          "type": "object",
+          "properties": {
+            "color": {
+              "type": "string"
+            },
+            "metalness": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "roughness": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "emissive": {
+              "type": "string"
+            },
+            "emissiveIntensity": {
+              "type": "number",
+              "minimum": 0
+            },
+            "transparent": {
+              "type": "boolean"
+            },
+            "opacity": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "geometry"
+            ]
+          },
+          "then": {
+            "properties": {
+              "geometry": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "waypoint": {
+      "type": "object",
+      "required": [
+        "at"
+      ],
+      "properties": {
+        "at": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "position": {
+          "$ref": "#/$defs/vector3"
+        },
+        "target": {
+          "$ref": "#/$defs/vector3"
+        },
+        "focusPart": {
+          "type": "string"
+        },
+        "offset": {
+          "$ref": "#/$defs/vector3"
+        },
+        "easing": {
+          "enum": [
+            "smooth",
+            "linear"
+          ]
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "position",
+            "target"
+          ]
+        },
+        {
+          "required": [
+            "focusPart",
+            "offset"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "source": {
+            "properties": {
+              "type": {
+                "const": "procedural"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        "required": [
+          "source"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parts": {
+            "items": {
+              "required": [
+                "geometry"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "source": {
+            "properties": {
+              "type": {
+                "const": "gltf"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        "required": [
+          "source"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parts": {
+            "items": {
+              "required": [
+                "nodeName"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

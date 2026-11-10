@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://scaffold.swarshinde.dev/schemas/asset-research.schema.json",
+  "title": "Scroll-3D Asset Research Report",
+  "type": "object",
+  "required": ["reportVersion", "subject", "toolAccess", "queries", "visualReferences", "modelCandidates", "selectedAsset", "knownUnknowns", "decisionNotes"],
+  "properties": {
+    "reportVersion": { "const": "1.0" },
+    "subject": {
+      "type": "object", "required": ["name", "intendedUse"],
+      "properties": { "name": { "type": "string", "minLength": 2 }, "brand": { "type": ["string", "null"] }, "intendedUse": { "type": "string", "minLength": 3 } },
+      "additionalProperties": false
+    },
+    "toolAccess": {
+      "type": "object", "required": ["webSearch", "imageSearch", "browserOpen"],
+      "properties": { "webSearch": { "enum": ["available", "unavailable"] }, "imageSearch": { "enum": ["available", "unavailable"] }, "browserOpen": { "enum": ["available", "unavailable"] }, "notes": { "type": "string" } },
+      "additionalProperties": false
+    },
+    "queries": { "type": "array", "items": { "type": "string", "minLength": 3 } },
+    "visualReferences": {
+      "type": "array", "items": {
+        "type": "object", "required": ["title", "sourceUrl", "view", "supports", "confidence", "notes"],
+        "properties": {
+          "title": { "type": "string", "minLength": 2 }, "sourceUrl": { "type": "string", "format": "uri" }, "imageUrl": { "type": ["string", "null"], "format": "uri" },
+          "view": { "enum": ["front", "side", "back", "top", "bottom", "detail", "three-quarter", "technical-drawing", "unknown"] },
+          "supports": { "type": "array", "items": { "enum": ["silhouette", "proportions", "components", "materials", "branding", "details"] } },
+          "confidence": { "enum": ["high", "medium", "low"] }, "notes": { "type": "string" }
+        }, "additionalProperties": false
+      }
+    },
+    "modelCandidates": {
+      "type": "array", "items": {
+        "type": "object", "required": ["title", "sourceUrl", "format", "licenseStatus", "separability", "scores", "notes"],
+        "properties": {
+          "title": { "type": "string" }, "creator": { "type": ["string", "null"] }, "sourceUrl": { "type": "string", "format": "uri" }, "previewUrl": { "type": ["string", "null"], "format": "uri" }, "downloadUrl": { "type": ["string", "null"], "format": "uri" }, "format": { "type": "string" },
+          "licenseStatus": { "enum": ["verified", "restricted", "unknown"] }, "licenseName": { "type": ["string", "null"] }, "licenseUrl": { "type": ["string", "null"], "format": "uri" }, "attribution": { "type": ["string", "null"] }, "commercialUseAllowed": { "type": ["boolean", "null"] }, "modificationAllowed": { "type": ["boolean", "null"] },
+          "separability": { "enum": ["separate-named-nodes", "separate-unnamed-nodes", "single-mesh", "not-inspected"] },
+          "scores": { "type": "object", "required": ["identity", "completeness", "separability", "materials", "technicalHealth", "licenseClarity"], "properties": {
+            "identity": { "type": "integer", "minimum": 0, "maximum": 5 }, "completeness": { "type": "integer", "minimum": 0, "maximum": 5 }, "separability": { "type": "integer", "minimum": 0, "maximum": 5 }, "materials": { "type": "integer", "minimum": 0, "maximum": 5 }, "technicalHealth": { "type": "integer", "minimum": 0, "maximum": 5 }, "licenseClarity": { "type": "integer", "minimum": 0, "maximum": 5 }
+          }, "additionalProperties": false }, "notes": { "type": "string" }
+        }, "additionalProperties": false
+      }
+    },
+    "selectedAsset": {
+      "type": "object", "required": ["strategy", "license", "rationale"],
+      "properties": {
+        "strategy": { "enum": ["user-supplied-model", "licensed-model", "procedural-from-reference", "image-sequence-or-video", "blocked-awaiting-asset"] }, "candidateUrl": { "type": ["string", "null"], "format": "uri" }, "localPath": { "type": ["string", "null"] }, "license": { "type": "string" }, "licenseUrl": { "type": ["string", "null"], "format": "uri" }, "attribution": { "type": ["string", "null"] }, "rationale": { "type": "string", "minLength": 10 }
+      }, "additionalProperties": false
+    },
+    "knownUnknowns": { "type": "array", "items": { "type": "string" } }, "decisionNotes": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}
